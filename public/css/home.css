@@ -1,0 +1,52 @@
+body{ 
+  background-color: black;
+}
+h1 {
+  color: black;
+}
+.splide {
+  width: 500px;
+  height: 130px;;
+  margin: 20px auto;
+  background-color: lightgray;
+  border: solid red 1px;
+}
+.splide__track{
+
+  width: 400px;
+  height: 100px;
+  margin: 0 auto;
+  border: green 1px solid ;
+}
+.splide__slide{
+  width: 100px !important;
+  height: 100px !important;
+  background-color: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.splide__pagination__page {
+  background-color: green !important;
+  /* top: 20px; */
+}
+
+.splide__pagination__page.is-active {
+  background-color: greenyellow !important;
+}
+
+.radio_logo_home {
+  width: 95px;
+  border-radius: 10px;
+}
+
+.radio_logo_home:hover{
+  cursor: pointer;
+  transform: scale(1.02);
+} 
+
+.radio_logo_home:active {
+  transform: scale(0.98);
+}
+
