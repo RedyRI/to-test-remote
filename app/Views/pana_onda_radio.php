@@ -130,15 +130,42 @@
     width: 140px;
     height: 140px;
     border: solid green 1px;
+    position: relative;
   }
+  
+  .prev_song_cover_container::after, .next_song_cover_container::after, .banner_right_img_container::after {
+    position: absolute;
+    bottom: calc(100% + 5px);
+    background-color: white;
+    color: black;
+    padding: 5px 7px;
+    left: 0;
+    font-family: 'Oswald', sans-serif;
+  }
+
+  .prev_song_cover_container::after{
+    content: 'ANTERIOR';
+  }
+  
+  .next_song_cover_container::after {
+    content: 'SIGUIENTE';
+  }
+
+  .banner_right_img_container::after {
+    content: 'SIGUIENTE PROGRAMA';
+  }
+
+
   .banner_right_img_container {
     width: 290px;
     height: 140px;
     border: solid green 1px;
+    position: relative;
   }
 
   .banner_right_img_container > img {
     width: 100%;
+    height: 100%;
   }
 
   .foto_locutor_container {
