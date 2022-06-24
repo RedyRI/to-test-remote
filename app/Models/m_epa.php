@@ -22,6 +22,23 @@ class m_epa extends Model
     $results = $query->getResult();
     return $results;
   }
+  public function getRadio($pagina)
+  {
+
+    $sql = 'SELECT * FROM epa_radios WHERE pagina = ?';
+
+    $query   = $this -> db1->query($sql, [$pagina]);
+    $results = $query->getResult();
+    return $results;
+  }
+
+   public function getCiudades()
+  {
+
+    $query   = $this -> db1->query('SELECT ciudad FROM ciudades');
+    $results = $query->getResult();
+    return $results;
+  }
 
   public function getRedesSocilaesDeRadios()
   {
@@ -60,12 +77,12 @@ class m_epa extends Model
     return $results;
   }
 
-    public function getProgramacionPanaHoy()
+  public function getProgramacionPanaHoy()
   {
     date_default_timezone_set("America/Lima");
 		$dia = date("N");
 
-    $sql = "SELECT entry AS idPrograma, SUBSTRING_INDEX( title, '-', 1 ) AS titlePrograma, SUBSTRING_INDEX( title, '-', -1 ) AS locutor, horaInicio AS horaPrograma, horaFin as finPrograma, urlPhoto3 as PhotoLocutor, urlPhoto3 as PhotoLocutor, urlPhoto2 as urlPhotoBloque FROM j_gallery_temasdia WHERE dia = ? AND active = ? ORDER BY horaInicio ASC";  
+    $sql = "SELECT entry AS idPrograma, SUBSTRING_INDEX( title, '-', 1 ) AS titlePrograma, SUBSTRING_INDEX( title, '-', -1 ) AS locutor, horaInicio AS horaPrograma, horaFin as finPrograma, urlPhoto3 as fotoLocutor, urlPhoto as fotoBloque, urlPhoto2 as fotoLogo FROM j_gallery_temasdia WHERE dia = ? AND active = ? ORDER BY horaInicio ASC";  
     
     $query = $this -> db3 -> query($sql, [$dia, 1]);
     $results = $query->getResult();

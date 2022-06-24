@@ -37,6 +37,9 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 // $routes->get('/', 'Home::index');
 $routes->add('/', 'Home::index');
+$routes->add('/radio/panamericana', 'Radio::panamericana');
+$routes->add('/radio/ondacero', 'Radio::ondacero');
+$routes->add('/radio/(:any)', 'Radio::show/$1');
 $routes->add('/about', 'About::index');
 $routes->add('/about/show/(:any)', 'About::show/$1');
 

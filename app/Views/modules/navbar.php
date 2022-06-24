@@ -4,22 +4,22 @@
   </div>
   <ul>
     <li>
-      <a href="/about">
+      <a class="navbar_link" href="/">
         <i class="material-icons home">home</i>
         Inicio</a>
     </li>
     <li>
-      <a href="/">
+      <a class="navbar_link" href="/radios">
         <i class="material-icons radio">radio</i>
         Radios</a>
     </li>
     <li>
-      <a href="/about">  
+      <a class="navbar_link" href="/about">  
         <i class="material-icons groups">groups</i>
         Nosotros</a>
     </li>
     <li>
-      <a href="/about">  
+      <a class="navbar_link" href="/about">  
         <i class="material-icons headset">headset_mic</i>
         Contacto</a>
     </li>
@@ -36,6 +36,7 @@
     background-color: rgba(255, 255, 255, 0.1);
     overflow: hidden;
     transition: width 0.3s ease;
+    z-index: 10;
   }
   .material-icons.home,
   .material-icons.radio,
@@ -55,7 +56,7 @@
   ul > li {
     display: block;
   }
-  a { 
+  a.navbar_link { 
     display: block;
     color:  white;
     font-size: 20px;
@@ -80,7 +81,7 @@
  }
 
 
- a:hover {
+ a.navbar_link:hover {
   background-image: radial-gradient(black 0%,black 50%,rgba(119,129,55,1)100%);
  }
 </style>
