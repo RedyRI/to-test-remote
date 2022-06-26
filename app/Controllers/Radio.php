@@ -22,6 +22,8 @@ class Radio extends BaseController
     public function show($pagina)
     {   
         $model = model(m_epa::class);
+        $data['radio_info'] = $model->getRadio($pagina)[0];
+        $data['slider_shadow'] = ($model->getRadio($pagina)[0])->sombra;
         $data['radio_info'] = $model -> getRadio($pagina)[0];
         $data['radios'] = $model -> getRadios();
 
@@ -29,8 +31,8 @@ class Radio extends BaseController
         .view('modules/navbar', $data)
         .view('modules/header',$data)
         .view('modules/slider',$data)
-        .view('modules/playbar')
-        .view('radio', $data)
+            . view('radio', $data)
+            . view('modules/playbar')
         .view('modules/footer');
     }
 
@@ -45,9 +47,9 @@ class Radio extends BaseController
         return  view('modules/head', $data)
         .view('modules/navbar', $data)
         .view('modules/header',$data)
-        .view('modules/slider',$data)
-        .view('modules/playbar')
+            . view('modules/slider', $data)
         .view('pana_onda_radio', $data)
+            . view('modules/playbar')
         .view('modules/footer');
     }
 
@@ -60,11 +62,11 @@ class Radio extends BaseController
         $data['radio_actual'] = 'ondacero';
 
         return  view('modules/head', $data)
-        .view('modules/navbar', $data)
-        .view('modules/header',$data)
-        .view('modules/slider',$data)
-        .view('modules/playbar')
-        .view('pana_onda_radio', $data)
-        .view('modules/footer');
+        . view('modules/navbar', $data)
+        . view('modules/header', $data)
+        . view('modules/slider', $data)
+        . view('pana_onda_radio', $data)
+        . view('modules/playbar')
+        . view('modules/footer');
     }
 }
