@@ -1,12 +1,23 @@
 <div class="header">
-  <div class="header_left">
+  <div class="header_left <?php echo $is_mobile == true ? 'mobile' : '' ?>">
+    <?php if($is_mobile) :?>
+      <div class="hamburguer_button_mobile">
+        <i class="material-icons menu mobile">menu</i> 
+      </div>
+    <?php endif;?>
+    
     <div class="logo_container">
       <a href="/">
         <img class="logo" src="<?php echo base_url() ?>/images/logoEPA.png" alt="">
       </a>
     </div>
+
+    <?php if($is_mobile) :?>
+      <span>EPA FM</span>
+      <a href="<?php echo $currentAgent == 'Android'? 'https://play.google.com/store/apps/details?id=com.touch.apppandafm&hl=es-419':'https://apps.apple.com/us/app/epa-fm/id1617706817'?>" class="header_mobile_btn" target="_blank">Abrir App</a>
+    <?php endif;?>
   </div>
-  <div class="header_right">
+  <div class="header_right <?php echo $is_mobile == true ? 'mobile' : '' ?>">
     <div class="search_container">
       <input type="text" placeholder="Buscar radio ...">
       <i class="material-icons search">search</i>
@@ -53,10 +64,33 @@
     flex: 0.5;
   }
 
+  .header_left.mobile {
+    flex: 1;
+    font-family: 'Oswald', sans-serif;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+  .header_left.mobile > .material-icons.menu {
+    border: solid red 1px;
+  }
+  .header_mobile_btn {
+    display: inline-block;
+    padding: 5px 7px;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    border-radius: 25px;
+
+  }
   .header_right {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+  }
+  .header_right.mobile {
+    display: none;
   }
 
   .search_container {
@@ -185,6 +219,8 @@
     outline: none;
     padding: 5px 7px;
   }
+  .hamburguer_button_mobile {
+  }
 </style>
 <script>
   let search_active = false
@@ -212,5 +248,17 @@
         item.style.display = 'none'
       }
     })
+  })
+
+  let menu_mobile_active = false
+  let menu_btn_mobile = $('.menu.mobile')
+  let hamburguer_button_mobile = $('.hamburguer_button_mobile')
+  let menu_mobile = $('.Navbar.mobile')
+  console.log(hamburguer_button_mobile);
+  hamburguer_button_mobile.click(e => {
+    console.log('hambuguer mobil btn clicked');
+    menu_btn_mobile.text(menu_mobile_active ? 'menu' : 'close');
+    menu_mobile_active ? (menu_mobile.css('width', '0px')) : menu_mobile.css('width', '100%')
+    menu_mobile_active = !menu_mobile_active
   })
 </script>

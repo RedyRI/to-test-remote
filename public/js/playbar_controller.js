@@ -40,31 +40,31 @@ const update_metadata = function () {
   };
 
   switch (page) {
-    case "ondacero":
+    case "onda-cero":
       port = 8011;
       break;
     case "panamericana":
       port = 8000;
       break;
-    case "lanube":
+    case "la-nube":
       port = 8025;
       break;
-    case "cumbiamix":
+    case "cumbia-mix":
       port = 8017;
       break;
-    case "oncesesenta":
+    case "once-sesenta":
       port = 8021;
       break;
-    case "lavaca":
+    case "la-vaca":
       port = 8007;
       break;
-    case "ondavip":
+    case "onda-cero-vip":
       port = 8039;
       break;
-    case "ondafeeling":
+    case "onda-cero-feeling":
       port = 8035;
       break;
-    case "ondaleyendas":
+    case "onda-cero-leyendas":
       port = 8033;
       break;
     default:

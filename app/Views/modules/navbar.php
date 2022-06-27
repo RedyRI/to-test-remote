@@ -1,8 +1,8 @@
-<div class="Navbar">
-  <div class="hamburguer_button">
+<div onclick="hide_navbar(this)" class="Navbar <?php echo $is_mobile == true ? 'mobile' : '' ?>">
+  <div class="hamburguer_button <?php echo $is_mobile == true ? 'mobile' : '' ?>">
     <i class="material-icons menu">menu</i>
   </div>
-  <ul>
+  <ul class="<?php echo $is_mobile == true ? 'mobile' : '' ?>" >
     <li>
       <a class="navbar_link" href="/">
         <i class="material-icons home">home</i>
@@ -39,6 +39,12 @@
     z-index: 10;
   }
 
+  .Navbar.mobile {
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 0;
+    text-align: center;
+  }
+
   .material-icons.home,
   .material-icons.radio,
   .material-icons.menu,
@@ -59,6 +65,11 @@
     display: block;
   }
 
+  ul.mobile>li {
+    display: flex;
+    justify-content: center;
+  }
+
   a.navbar_link {
     display: block;
     color: white;
@@ -70,10 +81,17 @@
     display: flex;
     align-items: center;
   }
-
+  ul.mobile>li>a{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
   .hamburguer_button {
     padding: 10px 12px;
     cursor: pointer;
+  }
+  .hamburguer_button.mobile {
+    display: none;
   }
 
   .hamburguer_button:hover {
@@ -99,4 +117,18 @@
     menu_active ? (menu.css('width', '50px')) : menu.css('width', '210px')
     menu_active = !menu_active
   })
+
+  const hide_navbar = function(element) {
+    if(element.classList.contains('Navbar') && element.classList.contains('mobile')) {
+      let menu_btn_mobile = $('.menu.mobile')
+      menu_btn_mobile.text('menu');
+      menu.css('width', '0px')
+      menu_active = !menu_active
+      menu_mobile_active = !menu_mobile_active
+    }
+
+    // if(element.classList.contains('mobile') && element.classList.contains('Navbar')) {
+    //   console.log('mobile navbar clicked');
+    // }
+  }
 </script>

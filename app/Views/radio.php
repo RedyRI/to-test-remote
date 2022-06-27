@@ -4,12 +4,6 @@
     <?php
 
     $background = $radio_info->fondo != '' ? "url('" . base_url() . '/images/' . $radio_info->fondo . "')" : "radial-gradient( " . $radio_info->color_uno . "  0%, " . $radio_info->color_uno . " 50%, " . $radio_info->color_dos . " 100%)";
-    // echo ('<pre>');
-    // print_r($radio_info);
-    // echo ('</pre>');
-    // echo ('<pre>');
-    // print_r($slider_shadow);
-    // echo ('</pre>');
     ?>
 
   </div>
@@ -46,13 +40,16 @@
   }
 
   .radio_artistas_container {
-    width: 30%;
+    width: 50% ; 
     position: absolute;
     bottom: 0;
     left: 50%;
     transform: translate(-50%, 0);
     display: flex;
     justify-content: center;
+  }
+  .radio_artistas_container > img {
+    width: 100%;
   }
 
   .radio_logo_container>img {

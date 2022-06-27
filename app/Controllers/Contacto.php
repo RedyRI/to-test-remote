@@ -15,16 +15,6 @@ class Contacto extends BaseController
 
     $agent = $this->request->getUserAgent();
 
-    // if ($agent->isBrowser()) {
-    //   $currentAgent = $agent->getBrowser() . ' ' . $agent->getVersion();
-    // } elseif ($agent->isRobot()) {
-    //   $currentAgent = $agent->getRobot();
-    // } elseif ($agent->isMobile()) {
-    //   $currentAgent = $agent->getMobile();
-    // } else {
-    //   $currentAgent = 'Unidentified User Agent';
-    // }
-
     if ($agent->isMobile()) {
       return view('mobile/contacto');
     } else {

@@ -47,9 +47,6 @@
         $bloque['sigProgramaBanner'] = 'https://www.ondacero.com.pe/j/images/programacion/' . $programas[$programa_actual_index + 1]->fotoBloque;
       }
     }
-    // echo ('<pre>');
-    // print_r($programa->locutor);
-    // echo ('</pre>');
   }
 
   $page_background = $radio_info->fondo != '' ? ' url("https://www.radiopanamericana.com/images/nuevo-banner-fondo-web.png")' : 'radial-gradient(#FEE248 30%, #FFA01C 100%)';

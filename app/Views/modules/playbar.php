@@ -1,8 +1,8 @@
-<div class="playbar">
-  <audio onplay="handlePlay()" onpause="handlePause()" onloadstart="handleLoadStart()" oncanplay="handleCanplay()" onerror="handleError()" data-now_playing="<?php echo (isset($radio_info) ? $radio_info->pagina  : 'ondacero') ?>" data-now_playing_name="<?php echo (isset($radio_info) ? $radio_info->nombre : 'Onda Cero') ?>" id="audio" src="<?php echo (isset($radio_info) ? $radio_info->stream  : 'https://streaming.gometri.com/stream/8011/stream') ?>">
+<div class="playbar <?php echo $is_mobile == true ? 'mobile' : '' ?>">
+  <audio onplay="handlePlay()" onpause="handlePause()" onloadstart="handleLoadStart()" oncanplay="handleCanplay()" onerror="handleError()" data-now_playing="<?php echo (isset($radio_info) ? $radio_info->pagina  : 'onda-cero') ?>" data-now_playing_name="<?php echo (isset($radio_info) ? $radio_info->nombre : 'Onda Cero') ?>" id="audio" src="<?php echo (isset($radio_info) ? $radio_info->stream  : 'https://streaming.gometri.com/stream/8011/stream') ?>">
   </audio>
 
-  <div class="playbar_left">
+  <div class="playbar_left <?php echo $is_mobile == true ? 'mobile' : '' ?>">
     <div class="metadata_container">
 
       <div class="playbar_cover_container">
@@ -10,17 +10,29 @@
       </div>
 
       <div class="playbar_song_info_container">
-        <span class="song_name"> NOMBRE DE CANCION - NOMBRE DE ARTISTA</span>
-        <span class="radio_playing"> <?php echo (isset($radio_info) ? $radio_info->nombre  : 'Onda Cero') ?> </span>
+        <?php if($is_mobile) :?>
+          <div class="song_name_container">
+            <span class="song_name  <?php echo $is_mobile == true ? 'mobile' : '' ?>"> NOMBRE DE CANCION - NOMBRE DE ARTISTA</span>
+          </div>
+          <span class="radio_playing"> <?php echo (isset($radio_info) ? $radio_info->nombre  : 'Onda Cero') ?> </span>
+        <?php else:?>
+          <span class="song_name  <?php echo $is_mobile == true ? 'mobile' : '' ?>"> NOMBRE DE CANCION - NOMBRE DE ARTISTA</span>
+          <span class="radio_playing"> <?php echo (isset($radio_info) ? $radio_info->nombre  : 'Onda Cero') ?> </span>
+        <?php endif;?>
       </div>
-
+      
     </div>
+    <?php if($is_mobile) :?>
+      <div class="arrow_show_radio <?php echo (isset($radio_page) ? 'hide':'')?>" onclick="show_radio()">
+        <i class="material-icons home arrow_show_radio_i">expand_less</i>
+      </div>
+    <?php endif;?>
   </div>
-  <div class="playbar_right">
+  <div class="playbar_right <?php echo $is_mobile == true ? 'mobile' : '' ?>">
     <div class="playbar_right_play_icon_container" onclick="controlPlayBtn()">
       <i class="material-icons play_arrow audio_control_icon_playbar">play_arrow</i>
     </div>
-    <div class="volume_input_container">
+    <div class="volume_input_container <?php echo $is_mobile == true ? 'mobile' : '' ?>">
       <input type="range" min='0' max='100' value="50" onmousedown="handleMouseDown()" onchange="handleRangeChange(this)">
     </div>
   </div>
@@ -38,12 +50,30 @@
     display: flex;
     background-color: lightgray;
   }
+  .playbar.mobile {
+    flex-direction: row-reverse;
+  }
 
+  .arrow_show_radio {
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .arrow_show_radio > i {
+    margin-left: 10px;
+  }
+  .arrow_show_radio.hide {
+    display: none;
+  }
   .playbar_right {
     flex: 0.5;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+  }
+  .playbar_right.mobile {
+    position: relative;
   }
 
   .playbar_right_play_icon_container>.material-icons.play_arrow {
@@ -55,6 +85,8 @@
   .playbar_left {
     flex: 0.5;
     color: black;
+    display: flex;
+    justify-content: space-between;
   }
 
   .metadata_container {
@@ -80,6 +112,7 @@
   span.song_name {
     display: block;
   }
+  
 
   span.radio_playing {
     display: block;
@@ -89,6 +122,19 @@
     animation: rotate 1s linear forwards infinite;
   }
 
+  .song_name_container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  span.song_name.mobile {
+    display: block;
+    width: 150%;
+    position: relative;
+    left: 10px;
+    animation: slide 6s linear forwards infinite;
+  }
   @keyframes rotate {
     0% {
       transform: rotate(0deg);
@@ -99,7 +145,27 @@
 
     }
   }
+    @keyframes slide {
+    0% {
+      left: 200%;
+    }
 
+    100% {
+      left: -200%;
+    }
+  }
+  .volume_input_container {
+    margin-right: 10px;
+  }
+  .volume_input_container.mobile {
+    display: none;
+  }
+  .playbar_left.mobile {
+    flex: 0.9;
+  }
+  .playbar_right.mobile {
+    flex: 0.1;
+  }
   /* estilizar barra de volumen */
   input[type="range"] {
     display: block;
@@ -169,10 +235,15 @@
   input[type="range"]::-ms-fill-upper {
     background-color: black;
   }
+  .radios_page_view {
+    transition: all 1s ease forwards;
+  }
 </style>
 <script>
+  
+   
   let audio = document.getElementById('audio')
-  audio.volume = 0.5
+  // audio.volume = 0.5
   let audio_control_icon_playbar = $('.audio_control_icon_playbar')
   let audio_control_icon_radio = $('.audio_control_icon_radio')
   let playbar_right_play_icon_container = $('.playbar_right_play_icon_container')
@@ -226,5 +297,18 @@
       audio.pause();
     }
   }
+            
+  let showing_radio = false;
+  
+  function show_radio() { 
+    let arrow_show_radio_i = document.querySelector('.arrow_show_radio_i') 
+    let radios_page_view = document.querySelector('.radios_page_view') 
+    arrow_show_radio_i.textContent = showing_radio ? 'expand_less' : 'expand_more' 
+    showing_radio = !showing_radio;
+    console.log('show radio clicked');
+    console.log(radios_page_view);
+    radios_page_view.style.top = showing_radio ? '58px' : '110%';
+  }
+   
 </script>
 <script src="<?php echo base_url('js/playbar_controller.js') ?>"></script>

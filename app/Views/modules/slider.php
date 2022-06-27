@@ -3,7 +3,7 @@
     $first_five_radios = array_slice($radios,0,5)   
   ?> 
 </div>
-<section class="splide" aria-label="Splide Basic HTML Example">
+<section class="splide <?php echo $is_mobile == true ? 'mobile' : '' ?>" aria-label="Splide Basic HTML Example">
   <div class="splide__track">
           <div class="splide__list">
 
@@ -39,6 +39,9 @@
   left: 50%;
   transform: translate(-50%, 0);
   z-index: 11;
+}
+.splide.mobile {
+  display: none;
 }
 .splide__track{
   width: 400px;
@@ -126,7 +129,7 @@
 var splide = new Splide( '.splide', {
 type   : '',
 drag   : '',
-perPage: 3,
+perPage: 4,
 } );
 
 splide.mount();
