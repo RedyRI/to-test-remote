@@ -13,6 +13,7 @@ class Radios extends BaseController
     $data['radios'] = $model->getRadios();
     $data['ciudades'] = $model->getCiudades();
     $data['redes_sociales'] = $model->getRedesSocilaesDeRadios();
+    $data['footer_content'] = view('modules/footer_content', $data);
 
     return  view('modules/head', $data)
       . view('modules/navbar', $data)

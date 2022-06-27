@@ -21,7 +21,7 @@
       <i class="material-icons play_arrow audio_control_icon_playbar">play_arrow</i>
     </div>
     <div class="volume_input_container">
-      <input type="range" min='0' max='100' value="100" onmousedown="handleMouseDown()" onchange="handleRangeChange(this)">
+      <input type="range" min='0' max='100' value="50" onmousedown="handleMouseDown()" onchange="handleRangeChange(this)">
     </div>
   </div>
 
@@ -172,6 +172,7 @@
 </style>
 <script>
   let audio = document.getElementById('audio')
+  audio.volume = 0.5
   let audio_control_icon_playbar = $('.audio_control_icon_playbar')
   let audio_control_icon_radio = $('.audio_control_icon_radio')
   let playbar_right_play_icon_container = $('.playbar_right_play_icon_container')

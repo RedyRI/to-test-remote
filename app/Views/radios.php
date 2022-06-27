@@ -1,4 +1,5 @@
 <main class="radios">
+  <h2>EPA FM</h2>
   <div class="radios_filter_container">
     <input type="text" placeholder="Buscar radio ..." onkeyup="filter_radios_cards()" id="filter_name">
     <select name="ciudad" id="ciudad" onchange="filter_radios_cards()">
@@ -35,6 +36,7 @@
     <?php endforeach; ?>
   </div>
 
+  <?php echo $footer_content ?>
 </main>
 <style>
   .radios {
@@ -44,7 +46,9 @@
     background-color: black;
     color: white;
     font-family: 'Oswald', sans-serif;
-    padding: 80px 0;
+    padding: 100px 0 50px 0;
+    text-align: center;
+    background-image: linear-gradient(to bottom, black 0%, black 30%, rgba(119, 129, 55, 1)100%);
   }
 
   .cards_container {
@@ -56,7 +60,6 @@
   }
 
   .radio_card {
-    border: solid green 1px;
     text-align: center;
   }
 
@@ -72,6 +75,8 @@
     width: 250px;
     height: 250px;
     position: relative;
+    background-color: black;
+    border-radius: 10px;
   }
 
   .radio_card_play {
@@ -130,7 +135,7 @@
 
 
   .radio_card_logo>img {
-    width: 100%;
+    width: 80%;
     border-radius: 10px;
   }
 
@@ -143,18 +148,32 @@
     width: 350px;
     display: flex;
     align-items: center;
+    font-family: 'Oswald', sans-serif;
   }
 
   .radios_filter_container>input {
     flex: 0.6;
     border: none;
     outline: none;
+    font-family: 'Oswald', sans-serif;
   }
 
   .radios_filter_container>select {
     flex: 0.4;
     border: none;
     outline: none;
+    font-family: 'Oswald', sans-serif;
+  }
+
+  .radios_filter_container>select>option {
+    padding: 15px 17px;
+    color: black;
+    background-color: rgba(0, 0, 0, 0.3);
+    font-family: 'Oswald', sans-serif;
+  }
+
+  .radios_filter_container>select>option:hover {
+    background-origin: red;
   }
 </style>
 <script>
@@ -176,10 +195,6 @@
 
   const filter_radios_cards = () => {
     let cards = [...document.querySelectorAll('.radio_card')]
-    // console.log(cards[0].getAttribute('data-nombre'));
-    // console.log(cards[0].getAttribute('data-ciudad'));
-    // console.log(filter_city.val());
-    // console.log(filter_name.val());
     let nombre = filter_name.val()
     let ciudad = filter_city.val()
     let filtered = []
@@ -191,6 +206,5 @@
         card.style.display = 'none'
       }
     })
-    console.log(filtered);
   }
 </script>

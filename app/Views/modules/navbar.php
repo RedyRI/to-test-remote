@@ -14,12 +14,12 @@
         Radios</a>
     </li>
     <li>
-      <a class="navbar_link" href="/about">  
+      <a class="navbar_link" href="/nosotros">
         <i class="material-icons groups">groups</i>
         Nosotros</a>
     </li>
     <li>
-      <a class="navbar_link" href="/about">  
+      <a class="navbar_link" href="/contacto">
         <i class="material-icons headset">headset_mic</i>
         Contacto</a>
     </li>
@@ -38,27 +38,30 @@
     transition: width 0.3s ease;
     z-index: 10;
   }
+
   .material-icons.home,
   .material-icons.radio,
   .material-icons.menu,
   .material-icons.groups,
-  .material-icons.headset{
+  .material-icons.headset {
     font-size: 30px;
     color: white;
     margin-right: 10px;
   }
+
   ul {
     margin: 0;
     padding: 0;
     list-style-type: none;
   }
 
-  ul > li {
+  ul>li {
     display: block;
   }
-  a.navbar_link { 
+
+  a.navbar_link {
     display: block;
-    color:  white;
+    color: white;
     font-size: 20px;
     text-decoration: none;
     width: 210px;
@@ -67,31 +70,33 @@
     display: flex;
     align-items: center;
   }
- .hamburguer_button {
-  padding: 10px 12px;
-  cursor: pointer;
- }
 
- .hamburguer_button:hover {
-  transform: scale(1.02);
- }
+  .hamburguer_button {
+    padding: 10px 12px;
+    cursor: pointer;
+  }
 
- .hamburguer_button:active {
-  transform: scale(0.95);
- }
+  .hamburguer_button:hover {
+    transform: scale(1.02);
+  }
+
+  .hamburguer_button:active {
+    transform: scale(0.95);
+  }
 
 
- a.navbar_link:hover {
-  background-image: radial-gradient(black 0%,black 50%,rgba(119,129,55,1)100%);
- }
+  a.navbar_link:hover {
+    background-image: radial-gradient(black 0%, black 50%, rgba(119, 129, 55, 1)100%);
+  }
 </style>
 <script>
   let menu_active = false
   let menu_btn = $('.menu')
+  let hamburguer_button = $('.hamburguer_button')
   let menu = $('.Navbar')
-  menu_btn.click(e=>{
+  hamburguer_button.click(e => {
     menu_btn.text(menu_active ? 'menu' : 'close');
-    menu_active ?  (menu.css('width','50px')) : menu.css('width','210px')
+    menu_active ? (menu.css('width', '50px')) : menu.css('width', '210px')
     menu_active = !menu_active
   })
 </script>
