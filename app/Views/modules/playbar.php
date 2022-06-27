@@ -177,7 +177,6 @@
   let playbar_right_play_icon_container = $('.playbar_right_play_icon_container')
 
   const handleLoadStart = () => {
-    console.log('loading has started');
     audio_control_icon_playbar.text('refresh')
     audio_control_icon_radio.text('refresh')
     playbar_right_play_icon_container.toggleClass('loading')
@@ -187,15 +186,12 @@
     audio.play()
     audio_control_icon_playbar.text('pause')
     audio_control_icon_radio.text('pause')
-    console.log(audio_control_icon_radio);
-    console.log(audio_control_icon_playbar);
     if (playbar_right_play_icon_container.hasClass('loading')) {
       playbar_right_play_icon_container.toggleClass('loading')
       audio_control_icon_radio.toggleClass('loading')
     }
   }
   const handlePause = () => {
-    console.log('Pause');
     audio_control_icon_playbar.text('play_arrow')
     audio_control_icon_radio.text('play_arrow')
     if (playbar_right_play_icon_container.hasClass('loading')) {
@@ -203,11 +199,8 @@
       audio_control_icon_radio.toggleClass('loading')
     }
   }
-  const handlePlay = () => {
-    console.log('Play');
-  }
+  const handlePlay = () => {}
   const handleError = () => {
-    console.log('something went wrong');
     audio_control_icon_playbar.text('warning')
     audio_control_icon_radio.text('warning')
 
@@ -222,17 +215,15 @@
   }
 
   const handleRangeChange = function(range) {
-    console.log(range.value);
+    audio.volume = range.value / 100;
   }
 
   const controlPlayBtn = () => {
-    console.log('play button clicked');
     if (audio.paused) {
-      console.log('play audio');
       audio.load();
     } else {
-      console.log('pause audio');
       audio.pause();
     }
   }
 </script>
+<script src="<?php echo base_url('js/playbar_controller.js') ?>"></script>

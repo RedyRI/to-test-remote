@@ -4,12 +4,12 @@
     <?php
 
     $background = $radio_info->fondo != '' ? "url('" . base_url() . '/images/' . $radio_info->fondo . "')" : "radial-gradient( " . $radio_info->color_uno . "  0%, " . $radio_info->color_uno . " 50%, " . $radio_info->color_dos . " 100%)";
-    echo ('<pre>');
-    print_r($radio_info);
-    echo ('</pre>');
-    echo ('<pre>');
-    print_r($slider_shadow);
-    echo ('</pre>');
+    // echo ('<pre>');
+    // print_r($radio_info);
+    // echo ('</pre>');
+    // echo ('<pre>');
+    // print_r($slider_shadow);
+    // echo ('</pre>');
     ?>
 
   </div>

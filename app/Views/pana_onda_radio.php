@@ -8,10 +8,10 @@
   $programa_actual_array = array_filter($programas, 'filterRadio');
   $programa_actual_index = array_keys($programa_actual_array)[0];
 
-  echo ('<pre>');
-  print_r(array_keys($programa_actual_array));
-  print_r($programa_actual_index);
-  echo ('</pre>');
+  // echo ('<pre>');
+  // print_r(array_keys($programa_actual_array));
+  // print_r($programa_actual_index);
+  // echo ('</pre>');
 
   $hoy = date('H:i:s');
   $bloque = array();
@@ -47,9 +47,9 @@
         $bloque['sigProgramaBanner'] = 'https://www.ondacero.com.pe/j/images/programacion/' . $programas[$programa_actual_index + 1]->fotoBloque;
       }
     }
-    echo ('<pre>');
-    print_r($programa->locutor);
-    echo ('</pre>');
+    // echo ('<pre>');
+    // print_r($programa->locutor);
+    // echo ('</pre>');
   }
 
   $page_background = $radio_info->fondo != '' ? ' url("https://www.radiopanamericana.com/images/nuevo-banner-fondo-web.png")' : 'radial-gradient(#FEE248 30%, #FFA01C 100%)';
@@ -76,10 +76,10 @@
 
     <div class="banner_left">
       <div class="prev_song_cover_container">
-        <img src="" alt="">
+        <img class="prev_song_cover_img" src="" alt="">
       </div>
       <div class="next_song_cover_container">
-        <img src="" alt="">
+        <img class="next_song_cover_img" src="" alt="">
       </div>
     </div>
 
@@ -116,9 +116,9 @@
   .program_info_container {
     position: absolute;
     left: 70px;
-    bottom: 150px;
-    border: solid red 1px;
+    top: 50%;
     height: 250px;
+    transform: translate(0, -50%);
   }
 
   .banners_container {
@@ -127,7 +127,6 @@
     left: 0;
     width: 100%;
     height: 140px;
-    border: solid red 1px;
     display: flex;
     justify-content: center;
   }
@@ -136,7 +135,6 @@
   .banner_right {
     width: 300px;
     height: 100%;
-    border: solid black 1px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -146,7 +144,6 @@
   .next_song_cover_container {
     width: 140px;
     height: 140px;
-    border: solid green 1px;
     position: relative;
   }
 
@@ -167,7 +164,7 @@
   }
 
   .next_song_cover_container::after {
-    content: 'SIGUIENTE';
+    content: 'ACTUAL';
   }
 
   .banner_right_img_container::after {
@@ -178,7 +175,6 @@
   .banner_right_img_container {
     width: 290px;
     height: 140px;
-    border: solid green 1px;
     position: relative;
   }
 
@@ -192,7 +188,6 @@
     bottom: 0;
     left: 50%;
     transform: translate(-50%, 0);
-    border: solid red 1px;
     height: calc(100vh - 180px)
   }
 
@@ -201,18 +196,21 @@
   }
 
   .al_aire_container {
-    border: solid black 2px;
     height: 25px;
   }
 
   .program_schedule {
-    border: solid black 2px;
-    width: 100%;
     height: 25px;
+    background-color: white;
+    font-family: 'Oswald', sans-serif;
+    display: flex;
+    justify-content: center;
+    width: 150px;
+    align-items: center;
+    margin: 0 auto;
   }
 
   .program_name {
-    border: solid green 1px;
     height: 200px;
   }
 
@@ -260,4 +258,59 @@
     animation: rotate 1s linear forwards infinite;
 
   }
+
+  .prev_song_cover_img,
+  .next_song_cover_img {
+    width: 100%;
+  }
+
+  .al_aire_text {
+    background-color: white;
+    width: 150px;
+    padding: 7px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Oswald', sans-serif;
+    margin: 0 auto;
+  }
+
+  .al_aire_text>.material-icons.circle {
+    animation: blink 1s ease infinite;
+    margin-right: 20px;
+  }
+
+  @keyframes blink {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+
+    }
+  }
 </style>
+<script>
+  let anterior = $(".prev_song_cover_img");
+  let actual = $(".next_song_cover_img");
+  anterior.attr(
+    "src",
+    "https://www.radio1160.com.pe/images/cancion/artista/logo_generico_2.png"
+  );
+  actual.attr(
+    "src",
+    "https://www.radio1160.com.pe/images/cancion/artista/logo_generico_2.png"
+  );
+
+  // setInterval(() => {}, 2000);
+  $(document).ready(function() {
+    setInterval(() => {
+      if (actual.attr("src") != $('.playbar_cover').attr("src")) {
+        anterior.attr("src", actual.attr("src"))
+        actual.attr("src", $('.playbar_cover').attr("src"))
+      }
+    }, 2000);
+
+  })
+</script>

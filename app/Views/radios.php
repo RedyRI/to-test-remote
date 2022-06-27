@@ -1,8 +1,17 @@
 <main class="radios">
+  <div class="radios_filter_container">
+    <input type="text" placeholder="Buscar radio ..." onkeyup="filter_radios_cards()" id="filter_name">
+    <select name="ciudad" id="ciudad" onchange="filter_radios_cards()">
+      <option value="">Todas</option>
+      <?php foreach ($ciudades as $ciudad) : ?>
+        <option value="<?php echo $ciudad->ciudad ?>"><?php echo ucfirst($ciudad->ciudad) ?></option>
+      <?php endforeach; ?>
+    </select>
+  </div>
 
   <div class="cards_container">
     <?php foreach ($radios as $radio) : ?>
-      <div class="radio_card">
+      <div class="radio_card" data-nombre="<?= $radio->nombre ?>" data-ciudad="<?= $radio->ciudad ?>">
         <div class="radio_card_body">
           <div class="radio_card_logo">
             <img src="<?php echo  base_url() . '/images/' . $radio->logo ?>" alt="">
@@ -35,12 +44,12 @@
     background-color: black;
     color: white;
     font-family: 'Oswald', sans-serif;
+    padding: 80px 0;
   }
 
   .cards_container {
     display: grid;
     justify-content: center;
-    border: solid red 1px;
     grid-template-columns: 250px 250px 250px;
     grid-template-rows: auto;
     gap: 25px;
@@ -48,6 +57,7 @@
 
   .radio_card {
     border: solid green 1px;
+    text-align: center;
   }
 
   .radio_card_body {
@@ -61,7 +71,6 @@
     justify-content: center;
     width: 250px;
     height: 250px;
-    border: solid red 1px;
     position: relative;
   }
 
@@ -124,9 +133,34 @@
     width: 100%;
     border-radius: 10px;
   }
+
+  .radios_filter_container {
+    padding: 10px 12px;
+    border-radius: 25px;
+    background-color: white;
+    color: black;
+    margin: 20px auto;
+    width: 350px;
+    display: flex;
+    align-items: center;
+  }
+
+  .radios_filter_container>input {
+    flex: 0.6;
+    border: none;
+    outline: none;
+  }
+
+  .radios_filter_container>select {
+    flex: 0.4;
+    border: none;
+    outline: none;
+  }
 </style>
 <script>
   let interval
+  let filter_name = $('#filter_name')
+  let filter_city = $('#ciudad')
   let radio_name = $('.radio_playing')
   const handle_click_radio_card = (info) => {
     console.log(radio_name);
@@ -136,5 +170,27 @@
     radio_name.text(nombre)
     clearInterval(interval)
     audio.src = stream
+    audio.setAttribute('data-now_playing', pagina)
+    audio.setAttribute('data-now_playing_name', nombre)
+  }
+
+  const filter_radios_cards = () => {
+    let cards = [...document.querySelectorAll('.radio_card')]
+    // console.log(cards[0].getAttribute('data-nombre'));
+    // console.log(cards[0].getAttribute('data-ciudad'));
+    // console.log(filter_city.val());
+    // console.log(filter_name.val());
+    let nombre = filter_name.val()
+    let ciudad = filter_city.val()
+    let filtered = []
+    cards.map((card) => {
+      if (card.getAttribute('data-nombre').match(new RegExp(nombre, 'i')) != null && card.getAttribute('data-ciudad').match(new RegExp(ciudad, 'i')) != null) {
+        filtered.push(card)
+        card.style.display = 'block'
+      } else {
+        card.style.display = 'none'
+      }
+    })
+    console.log(filtered);
   }
 </script>
