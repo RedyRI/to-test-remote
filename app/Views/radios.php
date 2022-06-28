@@ -168,7 +168,7 @@
   .radios_filter_container>select>option {
     padding: 15px 17px;
     color: black;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: white;
     font-family: 'Oswald', sans-serif;
   }
 
