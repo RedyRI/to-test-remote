@@ -224,7 +224,6 @@
     padding: 5px 7px;
   }
 
-  .hamburguer_button_mobile {}
 </style>
 <script>
   let search_active = false

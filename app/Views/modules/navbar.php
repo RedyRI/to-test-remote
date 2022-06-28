@@ -33,10 +33,11 @@
     position: fixed;
     left: 0;
     top: 60px;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: transparent;
     overflow: hidden;
     transition: width 0.3s ease;
     z-index: 11;
+    background-color: rgba(0, 0, 0, 0.1);
   }
 
   .Navbar.mobile {
@@ -106,6 +107,7 @@
 
   a.navbar_link:hover {
     background-image: radial-gradient(black 0%, black 50%, rgba(119, 129, 55, 1)100%);
+    border-radius: 20px;
   }
 </style>
 <script>
@@ -128,8 +130,5 @@
       menu_mobile_active = !menu_mobile_active
     }
 
-    // if(element.classList.contains('mobile') && element.classList.contains('Navbar')) {
-    //   console.log('mobile navbar clicked');
-    // }
   }
 </script>

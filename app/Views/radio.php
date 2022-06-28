@@ -67,7 +67,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: transparent;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -78,21 +78,21 @@
   .player_btn>.material-icons.play_arrow {
     font-size: 150px;
     color: black;
-    opacity: 0.6;
+    visibility: hidden;
   }
 
   .player_btn:hover {
     background-color: rgba(255, 255, 255, 0.5);
   }
 
-  .player_btn:hover>i {
-    opacity: 1;
+  .player_btn:hover>.material-icons.play_arrow {
     transform: scale(1.2);
+    visibility: visible;
   }
 
-  .player_btn:active>i {
-    opacity: 0.9;
+  .player_btn:active>.material-icons.play_arrow {
     transform: scale(1);
+    visibility: visible;
   }
 
   .audio_control_icon_radio.loading {

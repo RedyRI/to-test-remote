@@ -48,7 +48,7 @@
     font-family: 'Oswald', sans-serif;
     padding: 100px 0 50px 0;
     text-align: center;
-    background-image: linear-gradient(to bottom, black 0%, black 30%, rgba(119, 129, 55, 1)100%);
+    background-image: linear-gradient(to bottom, black 0%, black 30%, #3e8813 100%);
   }
   .radio_card_description {
     opacity: 0.5;
@@ -214,7 +214,7 @@
     cards.map((card) => {
       if (card.getAttribute('data-nombre').match(new RegExp(nombre, 'i')) != null && card.getAttribute('data-ciudad').match(new RegExp(ciudad, 'i')) != null) {
         filtered.push(card)
-        card.style.display = 'block'
+        card.style.display = 'flex'
       } else {
         card.style.display = 'none'
       }

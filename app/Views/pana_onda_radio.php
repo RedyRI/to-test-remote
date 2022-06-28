@@ -110,9 +110,13 @@
     position: absolute;
     left: 70px;
     top: 50%;
-    height: 250px;
+    min-height: 250px;
     transform: translate(0, -50%);
     z-index: 10;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   .banners_container {
@@ -191,6 +195,7 @@
 
   .al_aire_container {
     height: 25px;
+    margin-bottom: 20px;
   }
 
   .program_schedule {
@@ -201,15 +206,18 @@
     justify-content: center;
     width: 150px;
     align-items: center;
-    margin: 0 auto;
+    margin: 20px auto 0 auto;
+    border-radius: 10px;
+
   }
 
   .program_name {
-    height: 200px;
+    width: 100%;
+    
   }
 
   .program_name>img {
-    height: 100%;
+    width: 100%;
   }
 
   .player_btn {
@@ -220,7 +228,6 @@
     left: 50%;
     transform: translate(-50%, -50%);
     cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.1);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -231,21 +238,22 @@
   .player_btn>.material-icons.play_arrow {
     font-size: 150px;
     color: black;
-    opacity: 0.6;
+    visibility: hidden;
   }
 
   .player_btn:hover {
     background-color: rgba(255, 255, 255, 0.5);
   }
 
-  .player_btn:hover>i {
+  .player_btn:hover>.material-icons.play_arrow {
     opacity: 1;
     transform: scale(1.2);
+    visibility: visible;
   }
 
-  .player_btn:active>i {
-    opacity: 0.9;
+  .player_btn:active>.material-icons.play_arrow {
     transform: scale(1);
+    visibility: visible;
   }
 
   .audio_control_icon_radio.loading {
@@ -260,9 +268,10 @@
 
   .al_aire_text {
     background-color: white;
-    width: 150px;
-    padding: 7px 10px;
+    padding: 5px 7px;
     display: flex;
+    width: 100px;
+    border-radius: 10px;
     align-items: center;
     justify-content: center;
     font-family: 'Oswald', sans-serif;

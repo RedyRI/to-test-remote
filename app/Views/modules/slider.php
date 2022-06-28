@@ -1,6 +1,24 @@
 <div>
   <?php
-  $first_five_radios = array_slice($radios, 0, 5)
+
+  if( isset($pagina) && ($pagina == 'onda-cero' || $pagina == 'onda-cero-vip' || $pagina == 'onda-cero-feeling' || $pagina == 'onda-cero-leyendas')) {
+    $first_five_radios = [];
+    foreach($radios as $radio) {
+      if (preg_match("/onda/i", $radio->pagina) > 0 && $radio->pagina != 'onda-azul' && $radio->pagina != $pagina){
+        array_push($first_five_radios, $radio);
+      }
+    }
+
+  } elseif (isset($pagina) &&  $pagina == 'panamericana') {
+    $first_five_radios = [];
+    foreach($radios as $radio) {
+      if (preg_match("/pana/i", $radio->nombre) > 0){
+        array_push($first_five_radios, $radio);
+      }
+    }
+  } else {
+    $first_five_radios = array_slice($radios, 0, 5);
+  }
   ?>
 </div>
 <section class="splide <?php echo $is_mobile == true ? 'mobile' : '' ?>" aria-label="Splide Basic HTML Example">
@@ -66,6 +84,9 @@
     width: 90px;
     height: 90px;
     padding: 0;
+  }
+  .splide__slide:hover {
+    transform: scale(1.05);
   }
 
   .splide__slide>a>img {
