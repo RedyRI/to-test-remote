@@ -17,7 +17,7 @@
       <div class="splide__slide">
         <a class="slider_link ver_todas_btn" href="/radios">
           <span>
-            VER <br> TODAS
+            VER <br>TODAS
           </span>
         </a>
       </div>
@@ -72,18 +72,22 @@
     width: 90px;
     border-radius: 10px;
   }
-
-  .ver_todas_btn {
-    text-decoration: none;
-    font-family: 'Oswald', sans-serif;
-    color: white;
+  .ver_todas_btn > span {
+    line-height: 40px;
     text-align: center;
-    border: solid red 1px;
-    border-radius: 10px;
   }
-
-  .ver_todas_btn>span {
-    line-height: 45px;
+  .ver_todas_btn {
+    font-family: 'Oswald', sans-serif;
+    text-decoration: none;
+    color: white;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background-image: radial-gradient(circle, rgba(0, 0, 0, 1)0%, #384518 100%);
+    border-radius: 10px;
   }
 
   .splide__pagination__page {
