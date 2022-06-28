@@ -8,11 +8,6 @@
   $programa_actual_array = array_filter($programas, 'filterRadio');
   $programa_actual_index = array_keys($programa_actual_array)[0];
 
-  // echo ('<pre>');
-  // print_r(array_keys($programa_actual_array));
-  // print_r($programa_actual_index);
-  // echo ('</pre>');
-
   $hoy = date('H:i:s');
   $bloque = array();
   foreach ($programa_actual_array as $programa) {

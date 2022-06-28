@@ -1,4 +1,14 @@
 <div class="radios_mobile">
+
+  <div class="radios_filter">
+    <input type="text" placeholder="Buscar radio ..." onkeyup="filter_radios_mobile()" id="filter_name">
+    <select name="ciudad" id="ciudad" onchange="filter_radios_mobile()">
+      <option value="">Todas</option>
+      <?php foreach ($ciudades as $ciudad) : ?>
+        <option value="<?php echo $ciudad->ciudad ?>"><?php echo ucfirst($ciudad->ciudad) ?></option>
+      <?php endforeach; ?>
+    </select>
+  </div>
   <div class="cards_container">
     <?php foreach ($radios as $radio) : ?>
       <div class="radio_card" data-nombre="<?= $radio->nombre ?>" data-ciudad="<?= $radio->ciudad ?>">
@@ -16,27 +26,51 @@
     <div class="radio_view_info">
       <img class="radio_view_info_logo" src="" alt="">
     </div>
+    <div class="radio_view_info_pana_onda">
+      <div class="radio_view_info_pana_onda_info">
+        <div class="info_al_aire">AL AIRE</div>
+        <div class="info_programa"></div>
+        <div class="info_horario"></div>
+      </div>
+      <div class="foto_locutor_container">
+        <img class="foto_locutor_img" src="" alt="">
+      </div>
+    </div>
     <div class="radio_view_body">
       <h2>Radios Recomendadas</h2>
       <div class="radio_view_body_recomendadas">
-        <div class="radio_recomendada"></div>
-        <div class="radio_recomendada"></div>
-        <div class="radio_recomendada"></div>
-        <div class="radio_recomendada"></div>
-        <div class="radio_recomendada"></div>
       </div>
     </div>
   </div>
 </div>
 
 <style>
+  .radios_filter {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 25px;
+    background-color: white;
+  }
+
+  .radios_filter>input,
+  .radios_filter>select {
+    border: none;
+    outline: none;
+    padding: 5px 7px;
+    background-color: transparent;
+  }
+
   .cards_container {
     display: grid;
     justify-content: center;
     grid-template-columns: 30% 30% 30%;
     grid-template-rows: auto;
     gap: 2px;
-    padding: 70px 0;
+    padding: 10px 0 70px 0;
   }
 
   .radios_mobile {
@@ -45,6 +79,7 @@
     background-color: black;
     position: relative;
     color: white;
+    padding-top: 70px;
   }
 
   .radio_card {
@@ -95,6 +130,39 @@
     background-repeat: no-repeat;
   }
 
+  .radio_view_info_pana_onda {
+    width: 100%;
+    height: 60%;
+    background-color: black;
+    position: relative;
+    background-size: cover;
+
+  }
+
+  .foto_locutor_container {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    height: 90%;
+  }
+
+  .foto_locutor_container>img {
+    height: 100%;
+  }
+
+  .radio_view_info_pana_onda_info {
+    position: absolute;
+    left: 5px;
+    bottom: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    color: white;
+    font-family: 'Oswald', sans-serif;
+    z-index: 11;
+    padding: 10px 12px;
+  }
+
   .radio_view_body {
     padding: 10px;
     width: 100%;
@@ -105,7 +173,7 @@
 
   .radio_view_body_recomendadas {
     width: 90%;
-    margin: 0 auto;
+    margin: 10px auto;
     height: 120px;
     display: flex;
     flex-wrap: nowrap;
@@ -122,11 +190,32 @@
     margin: 0 5px;
   }
 
+  .radio_recomendada>a {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    border-radius: 10px;
+
+  }
+
+  .radio_recomendada>a>img {
+    width: 100%;
+    border-radius: 10px;
+  }
+
   .radio_view_info_logo {
     width: 80%;
   }
 </style>
 <script>
+  const radio_view_info_pana_onda = $('.radio_view_info_pana_onda')
+  const radio_view_info = $('.radio_view_info')
+  const info_programa = $('.info_programa')
+  const info_horario = $('.info_horario')
+  const foto_locutor_img = $('.foto_locutor_img')
+
   const handle_click_radio_card = (info) => {
     console.log(info);
     let radio_name = $('.radio_playing')
@@ -143,9 +232,13 @@
   }
 
   const get_radio_info = () => {
+    console.log('got hereeee');
     let audio = document.getElementById('audio')
+    console.log(audio);
     let now_playing_page = audio.getAttribute('data-now_playing').trim()
     if (now_playing_page != 'onda-cero' && now_playing_page != 'panamericana') {
+      radio_view_info.show('fast')
+      radio_view_info_pana_onda.hide('fast')
       console.log('peticion iniciada para obtener datos de radio', now_playing_page);
       $.ajax({
         url: `/radios/get_program/${now_playing_page}`,
@@ -163,22 +256,49 @@
         }
       })
     } else {
+      radio_view_info.hide('fast')
+      radio_view_info_pana_onda.show('fast')
 
+      let radio = now_playing_page == 'onda-cero' ? 'onda-cero' : 'panamericana'
+      $.ajax({
+          url: `/get_program/${radio}`,
+          method: 'GET',
+          dataType: 'json',
+          success: (data) => {
+            // update_radio_info(data[0])
+            console.log('*****************************');
+            console.log(data);
+            console.log('******************************');
+            update_radio_pana_onda_info(data)
+          },
+          error: (e) => {
+            console.log('error =-================================================');
+            console.log(e);
+          }
+        }
+
+      )
     }
+  }
+
+  const update_radio_pana_onda_info = (info) => {
+    info_programa.text(info.nombre);
+    info_horario.text(`${info.horaInicio} - ${info.horaFin}`)
+    foto_locutor_img.attr('src', info.fotoLocutor)
+    radio_view_info_pana_onda.css('background-image', `${info.page_background}`)
   }
 
   const update_radio_info = (info) => {
     console.log('------------------------------------------');
     console.log(info);
     console.log('------------------------------------------');
-    let radio_view_info = document.querySelector('.radio_view_info')
     let radio_view_info_logo = document.querySelector('.radio_view_info_logo')
     let radio_view_body = document.querySelector('.radio_view_body')
 
     if (info.fondo != "") {
-      radio_view_info.style.backgroundImage = `url('/images/${info.fondo}')`
+      radio_view_info.css('background-image', `url('/images/${info.fondo}')`)
     } else {
-      radio_view_info.style.backgroundImage = `radial-gradient( ${info.color_uno} 0%, ${info.color_uno} 50%, ${info.color_dos} 100%)`
+      radio_view_info.css('background-image', `radial-gradient( ${info.color_uno} 0%, ${info.color_uno} 50%, ${info.color_dos} 100%)`)
     }
 
 
@@ -196,7 +316,7 @@
       method: 'GET',
       dataType: 'json',
       success: (data) => {
-        update_recomended_radios(data[0])
+        update_recomended_radios(data)
       },
       error: (e) => {
         console.log(e);
@@ -205,6 +325,30 @@
   }
 
   const update_recomended_radios = (radios) => {
-    console.log(radios);
+    let radio_view_body_recomendadas = $('.radio_view_body_recomendadas')
+    radio_view_body_recomendadas.empty();
+    console.log(radios.length);
+    radios.forEach(radio => {
+      let div = document.createElement('div')
+      div.classList.add('radio_recomendada')
+      let a = document.createElement('a')
+      a.href = radio.ruta
+      let img = document.createElement('img')
+      img.src = `/images/logo_${radio.pagina}.png`
+
+      a.appendChild(img)
+      div.appendChild(a)
+
+      radio_view_body_recomendadas.append(div)
+    })
+
+  }
+  $(document).ready(() => {
+    get_radio_info();
+    get_recomended_radios();
+  })
+
+  const filter_radios_mobile = () => {
+    console.log('input value changed');
   }
 </script>

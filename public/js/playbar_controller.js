@@ -77,10 +77,7 @@ const update_metadata = function () {
   if (!not_stats_src) {
     try {
       $.ajax({
-        url:
-          "https://streaming.gometri.com/stream/" +
-          port +
-          "/stats?sid=1&json=1",
+        url: "http://streaming.gometri.com:" + port + "/stats?sid=1&json=1",
         dataType: "jsonp",
         timeout: 2000,
         success: function (data) {
