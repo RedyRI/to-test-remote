@@ -41,6 +41,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 20;
   }
   .play_arrow_mobile {
     color: white;

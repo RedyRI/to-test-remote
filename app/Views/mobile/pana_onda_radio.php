@@ -74,16 +74,25 @@
               </a>
             </div>
           <?php endif; ?>
+          <?php if($radio -> pagina == 'panamericana') :?>
+            <div class="onda_cero_card">
+              <a href="<?php echo $radio->ruta ?>">
+                <img src="<?php echo base_url('images') . '/logo_' . $radio->pagina . '.png' ?>" alt="">
+              </a>
+            </div>
+          <?php endif; ?>
         <?php endforeach; ?>
       </div>
     <?php else : ?>
       <div class="recomendadas_onda_cero">
-        <?php foreach (array_slice($radios, 6, 5) as $radio) : ?>
-          <div class="onda_cero_card">
-            <a href="<?php echo $radio->ruta ?>">
-              <img src="<?php echo base_url('images') . '/logo_' . $radio->pagina . '.png' ?>" alt="">
-            </a>
-          </div>
+        <?php foreach (array_slice($radios, 0, 6) as $radio) : ?>
+          <?php if($radio -> pagina != 'panamericana') :?>
+            <div class="onda_cero_card">
+              <a href="<?php echo $radio->ruta ?>">
+                <img src="<?php echo base_url('images') . '/logo_' . $radio->pagina . '.png' ?>" alt="">
+              </a>
+            </div>
+          <?php endif; ?>
         <?php endforeach; ?>
       </div>
     <?php endif; ?>
@@ -107,6 +116,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 20;
   }
   .play_arrow_mobile {
     color: white;
@@ -148,7 +158,7 @@
   .radio_page_movil_locutor_container>img {
     width: 100%;
     pointer-events: none;
-  
+
   }
 
   .pana_onda_radio_mobile_body {

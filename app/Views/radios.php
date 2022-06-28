@@ -29,7 +29,7 @@
             <span> <?php echo $radio->nombre ?></span>
           </div>
           <div class="radio_card_description">
-            <span> <?php echo $radio->pagina ?></span>
+            <span> <small><?php echo $radio->descripcion ?></small></span>
           </div>
         </div>
       </div>
@@ -50,7 +50,13 @@
     text-align: center;
     background-image: linear-gradient(to bottom, black 0%, black 30%, rgba(119, 129, 55, 1)100%);
   }
-
+  .radio_card_description {
+    opacity: 0.5;
+  }
+  .radio_card_name {
+    border: solid white 1px;
+    border-radius: 25px;
+  }
   .cards_container {
     display: grid;
     justify-content: center;
@@ -61,19 +67,24 @@
 
   .radio_card {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 2px 2px 8px 2px rgba(255, 255, 255, 0.2);
+    padding: 10px 0;
   }
 
   .radio_card_body {
     width: 220px;
-    margin: 1px solid white;
   }
 
   .radio_card_logo {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 250px;
-    height: 250px;
+    width: 100%;
+    height: 200px;
     position: relative;
     background-color: black;
     border-radius: 10px;
@@ -89,6 +100,7 @@
     display: none;
     align-items: center;
     justify-content: center;
+    border-radius: 25px 25px 0 0 ;
   }
 
   .radio_card_visit {
@@ -101,6 +113,7 @@
     display: none;
     align-items: center;
     justify-content: center;
+    border-radius: 25px;
   }
 
   .radio_card_visit>.radio_card_visit_btn>a {
