@@ -1,21 +1,21 @@
 <div class="header">
   <div class="header_left <?php echo $is_mobile == true ? 'mobile' : '' ?>">
-    <?php if($is_mobile) :?>
+    <?php if ($is_mobile) : ?>
       <div class="hamburguer_button_mobile">
-        <i class="material-icons menu mobile">menu</i> 
+        <i class="material-icons menu mobile">menu</i>
       </div>
-    <?php endif;?>
-    
+    <?php endif; ?>
+
     <div class="logo_container">
       <a href="/">
         <img class="logo" src="<?php echo base_url() ?>/images/logoEPA.png" alt="">
       </a>
     </div>
 
-    <?php if($is_mobile) :?>
+    <?php if ($is_mobile) : ?>
       <span>EPA FM</span>
-      <a href="<?php echo $currentAgent == 'Android'? 'https://play.google.com/store/apps/details?id=com.touch.apppandafm&hl=es-419':'https://apps.apple.com/us/app/epa-fm/id1617706817'?>" class="header_mobile_btn" target="_blank">Abrir App</a>
-    <?php endif;?>
+      <a href="<?php echo $currentAgent == 'Android' ? 'https://play.google.com/store/apps/details?id=com.touch.apppandafm&hl=es-419' : 'https://apps.apple.com/us/app/epa-fm/id1617706817' ?>" class="header_mobile_btn" target="_blank">Abrir App</a>
+    <?php endif; ?>
   </div>
   <div class="header_right <?php echo $is_mobile == true ? 'mobile' : '' ?>">
     <div class="search_container">
@@ -25,7 +25,7 @@
         <?php foreach ($radios as $radio) : ?>
           <div class="list_item">
             <a href="<?php echo $radio->ruta ?>">
-              <img class="list_item_logo" src="<?php echo base_url() ?>/images/<?php echo $radio->logo ?>" alt="">
+              <img class="list_item_logo" src="<?php echo base_url() ?>/images/logo_<?php echo $radio->pagina ?>.png" alt="">
               <?php echo ucfirst($radio->nombre) ?>
             </a>
           </div>
@@ -72,9 +72,11 @@
     align-items: center;
     background-color: rgba(0, 0, 0, 0.7);
   }
-  .header_left.mobile > .material-icons.menu {
+
+  .header_left.mobile>.material-icons.menu {
     border: solid red 1px;
   }
+
   .header_mobile_btn {
     display: inline-block;
     padding: 5px 7px;
@@ -84,11 +86,13 @@
     border-radius: 25px;
 
   }
+
   .header_right {
     display: flex;
     justify-content: flex-end;
     align-items: center;
   }
+
   .header_right.mobile {
     display: none;
   }
@@ -219,8 +223,8 @@
     outline: none;
     padding: 5px 7px;
   }
-  .hamburguer_button_mobile {
-  }
+
+  .hamburguer_button_mobile {}
 </style>
 <script>
   let search_active = false

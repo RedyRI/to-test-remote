@@ -1,6 +1,6 @@
 <div class="pana_onda_radio_mobile">
 
-<?php
+  <?php
   function filterRadio($value)
   {
     $hoy = date('H:i:s');
@@ -52,38 +52,38 @@
   <div class="pana_onda_radio_mobile_info">
     <div class="radio_page_info_movil">
       <div class="radio_page_movil_al_aire"><small>AL AIRE</small> </div>
-      <div class="radio_page_movil_nombre"><?php echo $bloque['nombre']?></div>
+      <div class="radio_page_movil_nombre"><?php echo $bloque['nombre'] ?></div>
       <div class="radio_page_movil_horario"><?php echo $bloque['horaInicio'] . ' - ' . $bloque['horaFin'] ?></div>
     </div>
     <div class="radio_page_movil_locutor_container">
-      <img src="<?php echo $bloque['fotoLocutor']?>" alt="">
+      <img src="<?php echo $bloque['fotoLocutor'] ?>" alt="">
     </div>
   </div>
   <div class="pana_onda_radio_mobile_body">
     <h2>RADIOS RECOMENDADAS</h2>
-    <?php if($radio_actual == 'ondacero') :?>
-    <div class="recomendadas_onda_cero">
-      <?php foreach($radios as $radio) :?>
-        <?php if(preg_match("/onda/i", $radio -> nombre) > 0 && $radio -> nombre != 'Onda Azul' && $radio -> nombre != 'Onda Cero') :?>  
-          <div class="onda_cero_card">
-            <a href="<?php echo $radio -> ruta ?>">
-              <img src="<?php echo base_url('images') . '/' . $radio -> logo ?>" alt="">
-            </a>
-          </div>  
-        <?php endif;?>
-      <?php endforeach;?>
-    </div>
-    <?php else:?>
+    <?php if ($radio_actual == 'ondacero') : ?>
       <div class="recomendadas_onda_cero">
-      <?php foreach(array_slice($radios, 6, 5) as $radio) :?>
+        <?php foreach ($radios as $radio) : ?>
+          <?php if (preg_match("/onda/i", $radio->nombre) > 0 && $radio->nombre != 'Onda Azul' && $radio->nombre != 'Onda Cero') : ?>
+            <div class="onda_cero_card">
+              <a href="<?php echo $radio->ruta ?>">
+                <img src="<?php echo base_url('images') . '/logo_' . $radio->pagina . '.png' ?>" alt="">
+              </a>
+            </div>
+          <?php endif; ?>
+        <?php endforeach; ?>
+      </div>
+    <?php else : ?>
+      <div class="recomendadas_onda_cero">
+        <?php foreach (array_slice($radios, 6, 5) as $radio) : ?>
           <div class="onda_cero_card">
-            <a href="<?php echo $radio -> ruta ?>">
-              <img src="<?php echo base_url('images') . '/' . $radio -> logo ?>" alt="">
+            <a href="<?php echo $radio->ruta ?>">
+              <img src="<?php echo base_url('images') . '/logo_' . $radio->pagina . '.png' ?>" alt="">
             </a>
-          </div>  
-      <?php endforeach;?>
-    </div>
-    <?php endif;?>
+          </div>
+        <?php endforeach; ?>
+      </div>
+    <?php endif; ?>
   </div>
 </div>
 
@@ -93,16 +93,18 @@
     height: 100vh;
     background-color: black;
   }
+
   .pana_onda_radio_mobile_info {
     width: 100%;
     height: 60%;
     background-color: black;
-    background-image: <?php echo $page_background?>;
+    background-image: <?php echo $page_background ?>;
     position: relative;
     padding-top: 60px;
     overflow: hidden;
     background-size: cover;
   }
+
   .radio_page_info_movil {
     position: absolute;
     font-family: 'Oswald', sans-serif;
@@ -113,13 +115,16 @@
     padding: 5px 15px;
     color: white;
   }
+
   .radio_page_movil_locutor_container {
     width: 100%;
     height: 100%;
   }
-  .radio_page_movil_locutor_container >img {
+
+  .radio_page_movil_locutor_container>img {
     width: 100%;
   }
+
   .pana_onda_radio_mobile_body {
     width: 100%;
     height: 40%;
@@ -128,6 +133,7 @@
     color: white;
     padding: 10px;
   }
+
   .recomendadas_onda_cero {
     width: 100%;
     height: 120px;
@@ -135,6 +141,7 @@
     flex-wrap: nowrap;
     overflow: scroll;
   }
+
   .onda_cero_card {
     width: 100px;
     height: 100px;
@@ -142,7 +149,8 @@
     flex-grow: 0;
     margin: 10px;
   }
-  .onda_cero_card > a {
+
+  .onda_cero_card>a {
     display: block;
     width: 100%;
     height: 100px;
@@ -152,7 +160,8 @@
     border: solid 1px white;
 
   }
-  .onda_cero_card > a > img {
+
+  .onda_cero_card>a>img {
     width: 100%;
     border-radius: 10px;
   }

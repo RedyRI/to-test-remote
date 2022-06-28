@@ -43,7 +43,7 @@ $routes->add('/radios/get_program_pana', 'Radios::ajax_get_program_pana');
 $routes->add('/radios/get_random_programs', 'Radios::ajax_get_five_random_radios');
 $routes->add('/radios/get_program/(:any)', 'Radios::ajax_get_program/$1');
 $routes->add('/radio/panamericana', 'Radio::panamericana');
-$routes->add('/radio/ondacero', 'Radio::ondacero');
+$routes->add('/radio/onda-cero', 'Radio::ondacero');
 $routes->add('/radio/(:any)', 'Radio::show/$1');
 $routes->add('/nosotros', 'Nosotros::index');
 $routes->add('/contacto', 'Contacto::index');

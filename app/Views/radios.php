@@ -15,7 +15,7 @@
       <div class="radio_card" data-nombre="<?= $radio->nombre ?>" data-ciudad="<?= $radio->ciudad ?>">
         <div class="radio_card_body">
           <div class="radio_card_logo">
-            <img src="<?php echo  base_url() . '/images/' . $radio->logo ?>" alt="">
+            <img src="<?php echo  base_url() . '/images/logo_' . $radio->pagina . '.png' ?> " alt="">
             <div class="radio_card_play">
               <i data-nombre="<?= $radio->nombre ?>" data-pagina="<?= $radio->pagina ?>" data-stream="<?= $radio->stream ?>" onclick="handle_click_radio_card(this)" class="material-icons play_arrow radio_card_icon">play_arrow</i>
             </div>

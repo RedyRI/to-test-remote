@@ -13,7 +13,7 @@
     </div>
   <?php else : ?>
     <div class="radio_logo_container">
-      <img src="<?php echo base_url() . '/images/' . $radio_info->logo ?> " alt="">
+      <img src="<?php echo base_url() . '/images/logo_' . $radio_info->pagina . '.png' ?> " alt="">
     </div>
   <?php endif; ?>
   <div class="player_btn" onclick="controlPlayBtn()">
@@ -40,7 +40,7 @@
   }
 
   .radio_artistas_container {
-    width: 50% ; 
+    width: 50%;
     position: absolute;
     bottom: 0;
     left: 50%;
@@ -48,7 +48,8 @@
     display: flex;
     justify-content: center;
   }
-  .radio_artistas_container > img {
+
+  .radio_artistas_container>img {
     width: 100%;
   }
 

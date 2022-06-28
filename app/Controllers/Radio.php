@@ -89,7 +89,7 @@ class Radio extends BaseController
         $model = model(m_epa::class);
         $agent = $this->request->getUserAgent();
 
-        $data['radio_info'] = $model -> getRadio('ondacero')[0];
+        $data['radio_info'] = $model->getRadio('onda-cero')[0];
         $data['programas'] = $model -> getProgramacionOndaHoy();
         $data['radios'] = $model -> getRadios();
         $data['radio_actual'] = 'ondacero';
