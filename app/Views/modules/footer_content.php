@@ -3,6 +3,8 @@
        <h2>CONTACTO:</h2>
        <span>Paseo Parodi 340</span> <br>
        <span>Lima, Perú</span>
+       <h2>Central Telefónica</h2>  
+        <span>(511) 422 6787</span>
      </div>
      <div class="footer_right">
        <img class="grp_logo" src="<?php echo base_url('images/gpr_logo.png') ?>" alt="">

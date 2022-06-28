@@ -1,5 +1,5 @@
 <div class="pana_onda_radio_mobile">
-
+  <?php echo $redes_sociales_element;?>
   <?php
   function filterRadio($value)
   {
@@ -50,6 +50,9 @@
 
 
   <div class="pana_onda_radio_mobile_info">
+    <div class="control_btn" onclick="control_audio_from_radio_view()">
+        <i class="material-icons play_arrow_mobile" >play_arrow</i>
+    </div>
     <div class="radio_page_info_movil">
       <div class="radio_page_movil_al_aire"><small>AL AIRE</small> </div>
       <div class="radio_page_movil_nombre"><?php echo $bloque['nombre'] ?></div>
@@ -93,6 +96,22 @@
     height: 100vh;
     background-color: black;
   }
+  .control_btn {
+    position: absolute;
+    bottom: -50px;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .play_arrow_mobile {
+    color: white;
+    font-size: 80px;
+  }
 
   .pana_onda_radio_mobile_info {
     width: 100%;
@@ -101,7 +120,6 @@
     background-image: <?php echo $page_background ?>;
     position: relative;
     padding-top: 60px;
-    overflow: hidden;
     background-size: cover;
   }
 
@@ -114,15 +132,23 @@
     border-radius: 25px;
     padding: 5px 15px;
     color: white;
+    z-index: 11;
   }
 
   .radio_page_movil_locutor_container {
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%,0);
+    display: flex;
+    align-items: flex-end;
   }
 
   .radio_page_movil_locutor_container>img {
     width: 100%;
+    pointer-events: none;
+  
   }
 
   .pana_onda_radio_mobile_body {
@@ -166,3 +192,13 @@
     border-radius: 10px;
   }
 </style>
+<script>
+  const control_audio_from_radio_view = () => {
+    let audio = document.querySelector('#audio')
+    if(audio.paused) {
+      audio.load()
+    } else {
+      audio.pause()
+    }
+  }
+</script>

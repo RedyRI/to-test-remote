@@ -1,5 +1,6 @@
 <!-- $radio_info -->
 <main class="radio_page">
+  <?php echo $redes_sociales_element  ?>
   <div>
     <?php
 

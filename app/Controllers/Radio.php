@@ -10,7 +10,7 @@ class Radio extends BaseController
 
         $data['radios'] = $model -> getRadios();
         $data['ciudades'] = $model -> getCiudades();
-        $data['redes_sociales'] = $model -> getRedesSocilaesDeRadios();
+        
 
         return  view('modules/head', $data)
         .view('modules/navbar', $data)
@@ -28,11 +28,15 @@ class Radio extends BaseController
         $data['slider_shadow'] = ($model->getRadio($pagina)[0])->sombra;
         $data['radio_info'] = $model -> getRadio($pagina)[0];
         $data['radios'] = $model -> getRadios();
+        $data['pagina'] = $pagina;
+        $data['redes_sociales'] = $model -> getRedesSocilaesDeRadios();
+        
         $data['is_mobile']  = false;
         $data['radio_page'] = true;
         
         if($agent->isMobile()) {
             $data['is_mobile']  = true;
+            $data['redes_sociales_element'] = view('modules/redes_sociales', $data);
             $data['currentAgent']= $agent->getMobile();
             return  view('modules/head', $data)
             . view('modules/navbar', $data)
@@ -41,6 +45,7 @@ class Radio extends BaseController
             . view('modules/playbar', $data)
             . view('modules/footer');
         } else {   
+            $data['redes_sociales_element'] = view('modules/redes_sociales', $data);
             return  view('modules/head', $data)
             .view('modules/navbar', $data)
             .view('modules/header',$data)
@@ -62,11 +67,14 @@ class Radio extends BaseController
         $data['radio_actual'] = 'panamericana';
         $data['is_mobile']  = false;
         $data['radio_page'] = true;
-
+        $data['pagina'] = 'panamericana';
+        $data['redes_sociales'] = $model -> getRedesSocilaesDeRadios();
+        
         
         if($agent->isMobile()) {
             $data['is_mobile']  = true;
             $data['currentAgent']= $agent->getMobile();
+            $data['redes_sociales_element'] = view('modules/redes_sociales', $data);
             return  view('modules/head', $data)
             . view('modules/navbar', $data)
             . view('modules/header', $data)
@@ -74,6 +82,7 @@ class Radio extends BaseController
             . view('modules/playbar', $data)
             . view('modules/footer');
         } else {     
+            $data['redes_sociales_element'] = view('modules/redes_sociales', $data);
             return  view('modules/head', $data)
             .view('modules/navbar', $data)
             .view('modules/header',$data)
@@ -95,10 +104,13 @@ class Radio extends BaseController
         $data['radio_actual'] = 'ondacero';
         $data['is_mobile']  = false;
         $data['radio_page'] = true;
-
+        $data['pagina'] = 'onda-cero';
+        $data['redes_sociales'] = $model -> getRedesSocilaesDeRadios();
+        
         if($agent->isMobile()) {
             $data['currentAgent']= $agent->getMobile();
             $data['is_mobile']  = true;
+            $data['redes_sociales_element'] = view('modules/redes_sociales', $data);
             return  view('modules/head', $data)
             . view('modules/navbar', $data)
             . view('modules/header', $data)
@@ -106,6 +118,7 @@ class Radio extends BaseController
             . view('modules/playbar', $data)
             . view('modules/footer');
         } else {     
+            $data['redes_sociales_element'] = view('modules/redes_sociales', $data);
             return  view('modules/head', $data)
             . view('modules/navbar', $data)
             . view('modules/header', $data)

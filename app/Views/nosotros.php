@@ -3,13 +3,13 @@
     NOSOTROS
   </h2>
   <div class="placeholder_cont">
-
+    <img src="<?php echo base_url('images/gpr_logo.png') ?>" alt="">
   </div>
-  <?php echo $footer_content ?>
+  <h5>GRUPO PANAMERICANA DE RADIOS</h5>
 </main>
 <style>
   .placeholder_cont {
-    height: 80vh;
+    margin-top: 50px;
   }
 
   .nosotros {

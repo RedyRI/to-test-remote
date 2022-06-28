@@ -33,16 +33,17 @@
     position: fixed;
     left: 0;
     top: 60px;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition: width 0.3s ease;
-    z-index: 10;
+    z-index: 11;
   }
 
   .Navbar.mobile {
     background-color: rgba(0, 0, 0, 0.8);
     width: 0;
     text-align: center;
+    z-index: 20;
   }
 
   .material-icons.home,

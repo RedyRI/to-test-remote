@@ -1,8 +1,8 @@
 <div class="radios_mobile">
 
   <div class="radios_filter">
-    <input type="text" placeholder="Buscar radio ..." onkeyup="filter_radios_mobile()" id="filter_name">
-    <select name="ciudad" id="ciudad" onchange="filter_radios_mobile()">
+    <input type="text" placeholder="Buscar radio ..." onkeyup="filter_radios_mobile()" id="filter_name_mobile">
+    <select name="ciudad" id="filter_ciudad_mobile" onchange="filter_radios_mobile()">
       <option value="">Todas</option>
       <?php foreach ($ciudades as $ciudad) : ?>
         <option value="<?php echo $ciudad->ciudad ?>"><?php echo ucfirst($ciudad->ciudad) ?></option>
@@ -25,6 +25,9 @@
   <div class="radios_page_view">
     <div class="radio_view_info">
       <img class="radio_view_info_logo" src="" alt="">
+      <div class="control_btn" onclick="control_audio_from_radio_view()">
+        <i class="material-icons play_arrow_mobile" >play_arrow</i>
+      </div>
     </div>
     <div class="radio_view_info_pana_onda">
       <div class="radio_view_info_pana_onda_info">
@@ -35,6 +38,10 @@
       <div class="foto_locutor_container">
         <img class="foto_locutor_img" src="" alt="">
       </div>
+      
+            <div class="control_btn" onclick="control_audio_from_radio_view()">
+            <i class="material-icons play_arrow_mobile" >play_arrow</i>
+            </div>
     </div>
     <div class="radio_view_body">
       <h2>Radios Recomendadas</h2>
@@ -60,7 +67,8 @@
   .radios_filter>select {
     border: none;
     outline: none;
-    padding: 5px 7px;
+    padding: 15px 10px;
+    font-size: 1rem;
     background-color: transparent;
   }
 
@@ -128,8 +136,26 @@
     justify-content: center;
     background-size: cover;
     background-repeat: no-repeat;
+    position: relative;
   }
 
+  .control_btn {
+    position: absolute;
+    bottom: -50px;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .play_arrow_mobile {
+    color: white;
+    font-size: 80px;
+    pointer-events: none;
+  }
   .radio_view_info_pana_onda {
     width: 100%;
     height: 60%;
@@ -349,6 +375,29 @@
   })
 
   const filter_radios_mobile = () => {
+    let nombre = $('#filter_name_mobile')
+    let ciudad = $('#filter_ciudad_mobile')
+    console.log(`ciudad: ${ciudad.val()}, nombre: ${nombre.val() }`);
     console.log('input value changed');
+    $('.radio_card').toArray().map(card=>{
+      let name_re = new RegExp(nombre.val(), 'i')
+      let city_re = new RegExp(ciudad.val(), 'i')
+      let card_name = card.getAttribute('data-nombre') 
+      let card_city = card.getAttribute('data-ciudad') 
+      if(card_name.match(name_re) != null && card_city.match(city_re) != null) {
+        card.style.display = 'block'
+      } else {
+        card.style.display = 'none'
+      }
+    })
+  }
+
+  const control_audio_from_radio_view = () => {
+    let audio = document.querySelector('#audio')
+    if(audio.paused) {
+      audio.load()
+    } else {
+      audio.pause()
+    }
   }
 </script>

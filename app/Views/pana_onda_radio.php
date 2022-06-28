@@ -1,4 +1,5 @@
 <div class="pana_onda_radio">
+  <?php echo $redes_sociales_element ; ?>
   <?php
   function filterRadio($value)
   {
@@ -111,6 +112,7 @@
     top: 50%;
     height: 250px;
     transform: translate(0, -50%);
+    z-index: 10;
   }
 
   .banners_container {

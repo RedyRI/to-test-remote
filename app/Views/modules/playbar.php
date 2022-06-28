@@ -243,21 +243,24 @@
   
    
   let audio = document.getElementById('audio')
-  // audio.volume = 0.5
   let audio_control_icon_playbar = $('.audio_control_icon_playbar')
   let audio_control_icon_radio = $('.audio_control_icon_radio')
   let playbar_right_play_icon_container = $('.playbar_right_play_icon_container')
-
+  let play_icon_mobile_radios_view
+  
   const handleLoadStart = () => {
+    play_icon_mobile_radios_view = $('.play_arrow_mobile')
     audio_control_icon_playbar.text('refresh')
     audio_control_icon_radio.text('refresh')
     playbar_right_play_icon_container.toggleClass('loading')
     audio_control_icon_radio.toggleClass('loading')
+    updateIcon(play_icon_mobile_radios_view, 'loading')
   }
   const handleCanplay = () => {
     audio.play()
     audio_control_icon_playbar.text('pause')
     audio_control_icon_radio.text('pause')
+    updateIcon(play_icon_mobile_radios_view, 'playing')
     if (playbar_right_play_icon_container.hasClass('loading')) {
       playbar_right_play_icon_container.toggleClass('loading')
       audio_control_icon_radio.toggleClass('loading')
@@ -266,6 +269,7 @@
   const handlePause = () => {
     audio_control_icon_playbar.text('play_arrow')
     audio_control_icon_radio.text('play_arrow')
+    updateIcon(play_icon_mobile_radios_view, 'paused')
     if (playbar_right_play_icon_container.hasClass('loading')) {
       playbar_right_play_icon_container.toggleClass('loading')
       audio_control_icon_radio.toggleClass('loading')
@@ -310,5 +314,8 @@
     radios_page_view.style.top = showing_radio ? '58px' : '110%';
   }
    
+  function updateIcon(element, state) {
+    element.text(state == 'loading' ? 'refresh' : state == 'playing' ? 'pause' : 'play_arrow')
+  }
 </script>
 <script src="<?php echo base_url('js/playbar_controller.js') ?>"></script>
